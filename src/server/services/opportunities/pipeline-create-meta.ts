@@ -10,6 +10,7 @@ export type PipelineCreateMeta = {
   pipelineName: string;
   stages: { id: string; name: string; kind: string; probability: number | null }[];
   members: { id: string; fullName: string }[];
+  creator : string
 };
 
 export async function getPipelineCreateMeta(
@@ -20,7 +21,7 @@ export async function getPipelineCreateMeta(
   await assertCanAccessPipeline(tx, session, pipelineId);
 
   const [pipe] = await tx
-    .select({ id: pipeline.id, name: pipeline.name })
+    .select({ id: pipeline.id, name: pipeline.name, creator: pipeline.createdBy })
     .from(pipeline)
     .where(and(eq(pipeline.orgId, session.orgId), eq(pipeline.id, pipelineId)))
     .limit(1);
@@ -58,6 +59,7 @@ export async function getPipelineCreateMeta(
   return {
     pipelineId: pipe.id,
     pipelineName: pipe.name,
+    creator: pipe.creator,
     stages,
     members: members.map((row) => ({
       id: row.id,

@@ -1,10 +1,12 @@
 'use client';
 
-import { Plus } from 'lucide-react';
+import { Plus, UserRoundPlus } from 'lucide-react';
 import type { PipelineListItem } from '@/domain/opportunities/card-view';
 import { PipelinePicker } from '@/features/opportunities/components/pipeline-picker';
 import { OpportunitiesViewSwitch } from '@/features/opportunities/components/opportunities-view-switch';
 import { Button } from '@/components/ui/button';
+import ItemHelp from '@/components/ui/item-help';
+import ManagePipelineMembersDialog from './manage-pipeline-members-dialog';
 
 export function OpportunitiesPageHeader({
   pipelines,
@@ -23,6 +25,9 @@ export function OpportunitiesPageHeader({
   onViewChange: (view: 'board' | 'list' | 'forecast') => void;
   onAddOpportunity: () => void;
 }) {
+
+  const currentPipeline = pipelines.find((pipeline) => pipeline.id === pipelineId ) ?? null
+
   return (
     <header className="flex flex-wrap items-center gap-3.5 gap-y-3">
       <div className="flex min-w-0 flex-wrap items-center gap-3">
@@ -38,10 +43,12 @@ export function OpportunitiesPageHeader({
       <OpportunitiesViewSwitch value={view} onChange={onViewChange} />
 
       <div className="ml-auto flex shrink-0 items-center gap-2">
+         <ManagePipelineMembersDialog pipelineId={pipelineId} pipeline={currentPipeline as PipelineListItem} />
         <Button type="button" className="shadow-[0_8px_18px_-8px_rgba(83,97,219,0.7)]" onClick={onAddOpportunity}>
           <Plus className="size-4" aria-hidden />
           Add opportunity
         </Button>
+       
       </div>
     </header>
   );
