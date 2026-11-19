@@ -44,6 +44,7 @@ export type BoardStageSummary = {
 export type PipelineListItem = {
   id: string;
   name: string;
+  color: string;
   isDefault: boolean;
   openDealCount: number;
 };

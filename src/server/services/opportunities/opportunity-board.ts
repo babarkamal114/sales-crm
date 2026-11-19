@@ -95,6 +95,7 @@ export async function listAccessiblePipelines(
     .select({
       id: pipeline.id,
       name: pipeline.name,
+      color: pipeline.color,
       isDefault: pipeline.isDefault,
       openDealCount: sql<number>`count(${opportunity.id}) filter (where ${opportunity.status} = 'open' and ${opportunity.deletedAt} is null)::int`,
     })

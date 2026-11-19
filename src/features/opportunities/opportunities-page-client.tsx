@@ -165,6 +165,7 @@ export function OpportunitiesPageClient({
         pipelineId={pipelineId ?? ''}
         view={view}
         canCreatePipeline={role === 'admin'}
+        canManagePipelines={role === 'admin'}
         onPipelineChange={(id) => updateParams({ pipeline: id })}
         onViewChange={(next) => updateParams({ view: next === 'board' ? null : next })}
         onAddOpportunity={() => openAddOpportunity()}

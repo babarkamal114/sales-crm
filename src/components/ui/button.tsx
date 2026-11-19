@@ -18,6 +18,7 @@ const buttonVariants = cva(
         destructive:
           "rounded-2xl bg-rose-50 font-bold text-rose-600 hover:bg-rose-100",
         icon: "rounded-2xl border border-line bg-white text-ink-500 shadow-chip hover:text-ink-900",
+        'no-bg': 'border-none shadow-none bg-transparent text-ink-500 hover:text-ink-900'
       },
       size: {
         default: "h-10 px-4 text-[13px]",

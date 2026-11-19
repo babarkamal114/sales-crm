@@ -1,11 +1,10 @@
 'use client';
 
-import { Plus, UserRoundPlus } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import type { PipelineListItem } from '@/domain/opportunities/card-view';
 import { PipelinePicker } from '@/features/opportunities/components/pipeline-picker';
 import { OpportunitiesViewSwitch } from '@/features/opportunities/components/opportunities-view-switch';
 import { Button } from '@/components/ui/button';
-import ItemHelp from '@/components/ui/item-help';
 import ManagePipelineMembersDialog from './manage-pipeline-members-dialog';
 
 export function OpportunitiesPageHeader({
@@ -13,6 +12,7 @@ export function OpportunitiesPageHeader({
   pipelineId,
   view,
   canCreatePipeline,
+  canManagePipelines,
   onPipelineChange,
   onViewChange,
   onAddOpportunity,
@@ -21,6 +21,7 @@ export function OpportunitiesPageHeader({
   pipelineId: string;
   view: 'board' | 'list' | 'forecast';
   canCreatePipeline: boolean;
+  canManagePipelines: boolean;
   onPipelineChange: (id: string) => void;
   onViewChange: (view: 'board' | 'list' | 'forecast') => void;
   onAddOpportunity: () => void;
@@ -37,6 +38,7 @@ export function OpportunitiesPageHeader({
           value={pipelineId}
           onChange={onPipelineChange}
           canCreatePipeline={canCreatePipeline}
+          canManagePipelines={canManagePipelines}
         />
       </div>
 

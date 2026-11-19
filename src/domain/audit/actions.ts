@@ -57,5 +57,8 @@ export type AuditAction =
   | 'conversation.message_queued'
   | 'conversation.comment_added'
   | 'pipeline.members_changed'
+  | 'pipeline.settings_updated'
+  | 'pipeline.archived'
+  | 'pipeline.deleted'
 
 export type AuditActorType = 'user' | 'system' | 'webhook' | 'api_key';

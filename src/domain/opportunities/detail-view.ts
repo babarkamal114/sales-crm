@@ -35,6 +35,7 @@ export type TeamMemberOption = {
   id: string;
   fullName: string;
   initials: string;
+  role: string
 };
 
 export type OpportunityDetailView = {

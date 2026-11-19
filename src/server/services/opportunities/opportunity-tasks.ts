@@ -29,6 +29,7 @@ export type TeamMemberOption = {
   id: string;
   fullName: string;
   initials: string;
+  role: string
 };
 
 function initials(fullName: string): string {
@@ -46,6 +47,7 @@ export async function listOrgTeamMembers(
     .select({
       id: user.id,
       fullName: user.fullName,
+      role : membership.role
     })
     .from(membership)
     .innerJoin(user, eq(membership.userId, user.id))
@@ -54,7 +56,7 @@ export async function listOrgTeamMembers(
 
   return rows.map((row) => {
     const name = row.fullName?.trim() || 'User';
-    return { id: row.id, fullName: name, initials: initials(name) };
+    return { id: row.id, fullName: name, initials: initials(name), role: row.role };
   });
 }
 

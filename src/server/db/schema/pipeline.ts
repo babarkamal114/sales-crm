@@ -10,6 +10,7 @@ import {
   uuid,
 } from 'drizzle-orm/pg-core';
 import { crmSchema, organisation, user } from '@/server/db/schema/membership';
+import { DEFAULT_PIPELINE_COLOR } from '@/domain/pipeline/colors';
 
 export const pipelineStageKindEnum = crmSchema.enum('pipeline_stage_kind', [
   'open',
@@ -58,6 +59,7 @@ export const pipeline = crmSchema.table(
       .references(() => organisation.id, { onDelete: 'cascade' }),
     name: text('name').notNull(),
     slug: text('slug').notNull(),
+    color: text('color').notNull().default(DEFAULT_PIPELINE_COLOR),
     position: integer('position').notNull().default(0),
     isDefault: boolean('is_default').notNull().default(false),
     archivedAt: timestamp('archived_at', { withTimezone: true }),
